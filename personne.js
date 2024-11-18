@@ -1,6 +1,6 @@
 // Fonction pour charger les données du CSV
 function loadCSV(callback) {
-    fetch('personnes.csv')
+    fetch('https://raw.githubusercontent.com/PaolorsiSimon/Projet_final_web/refs/heads/main/personnes.csv')
       .then(response => response.text())
       .then(data => {
         const rows = data.split('\n');
