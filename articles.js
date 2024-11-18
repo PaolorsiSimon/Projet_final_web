@@ -4,7 +4,7 @@ async function loadArticles() {
       displayLoading();
 
       // URL du fichier CSV (lien brut GitHub par exemple)
-      const csvUrl = 'https://raw.githubusercontent.com/PaolorsiSimon/Projet_final_web/main/articles.csv';
+      const csvUrl = 'https://raw.githubusercontent.com/PaolorsiSimon/Projet_final_web/refs/heads/main/articles.csv';
 
       // Charger le fichier CSV
       const response = await fetch(csvUrl);
