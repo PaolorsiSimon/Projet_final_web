@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Combo - Portfolio Artistique</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="favicon.png" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Combo</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#accueil">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#galerie">Galerie</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="#apropos">À propos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Accueil -->
+    <section
+      id="accueil"
+      class="text-center text-white d-flex align-items-center"
+      style="
+        background-image: url('images/home.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        height: 100vh;
+      "
+    >
+      <div class="container">
+        <p class="lead">Culture Kidnapper</p>
+        <h1 class="display-1">Combo CK</h1>
+        <p class="lead">Fear no one, fear nothing</p>
+      </div>
+    </section>
+
+    <!-- Galerie -->
+    <section id="galerie" class="py-5">
+      <div class="container">
+        <h2 class="text-center mb-4">Galerie</h2>
+        <div class="row" id="gallery-container">
+          <!-- Les images seront insérées ici par JavaScript -->
+        </div>
+      </div>
+    </section>
+
+
+    <h1>Articles</h1>
+  <div id="articles" class="article-container"></div>
+  
+  <!-- Inclusion du fichier JavaScript -->
+
+
+
+
+    <!-- Section Blog -->
+    <section id="blog" class="py-5">
+      <div class="container">
+        <h2 class="text-center mb-5">Blog</h2>
+        <div class="row">
+          <!-- Article 1 : Élections présidentielles -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <!-- Carrousel Bootstrap vide avec un ID unique -->
+              <div
+                id="carouselPresidentiels"
+                class="carousel slide"
+                data-bs-ride="carousel"
+              >
+                <div class="carousel-inner" id="carousel-inner-president"></div>
+                <!-- Contrôles de navigation du carrousel -->
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselPresidentiels"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Précédent</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselPresidentiels"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Suivant</span>
+                </button>
+              </div>
+
+              <!-- Corps de la carte avec titre et texte -->
+              <div class="card-body">
+                <h5 class="card-title">Élections présidentielles</h5>
+                <p class="card-text">
+                  <small class="text-muted">15 avril 2017 • Photos</small>
+                </p>
+                <p class="card-text">
+                  Un aperçu des élections présidentielles et leurs enjeux
+                  majeurs...
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- POUR BRUXELLES -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <!-- Carrousel Bootstrap vide avec un ID unique -->
+              <div
+                id="carouselBruxelles"
+                class="carousel slide"
+                data-bs-ride="carousel"
+              >
+                <div class="carousel-inner" id="carousel-inner-bruxelles"></div>
+                <!-- Contrôles de navigation du carrousel -->
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselBruxelles"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Précédent</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselBruxelles"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Suivant</span>
+                </button>
+              </div>
+
+              <!-- Corps de la carte avec titre et texte -->
+              <div class="card-body">
+                <h5 class="card-title">Bruxelles</h5>
+                <p class="card-text">
+                  <small class="text-muted">16 mars 2017 • Voyages</small>
+                </p>
+                <p class="card-text">
+                  Explorez la beauté de Bruxelles, une ville riche en culture...
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Article 3 : 1 City 1 Night - GENOVA -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <!-- Carrousel Bootstrap vide avec un ID unique -->
+              <div
+                id="carouselGenova"
+                class="carousel slide"
+                data-bs-ride="carousel"
+              >
+                <div class="carousel-inner" id="carousel-inner-genova"></div>
+                <!-- Contrôles de navigation du carrousel -->
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselGenova"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Précédent</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselGenova"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Suivant</span>
+                </button>
+              </div>
+              <!-- Corps de la carte avec titre et texte -->
+              <div class="card-body">
+                <h5 class="card-title">1 City 1 Night - GENOVA</h5>
+                <p class="card-text">
+                  <small class="text-muted">12 février 2017 • Vidéos</small>
+                </p>
+                <p class="card-text">
+                  Découvrez Gênes la nuit, une aventure visuelle
+                  époustouflante...
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Article 4 : Les créations de Tristan Eaton -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <!-- Carrousel Bootstrap vide avec un ID unique -->
+              <div
+                id="carouselEaton"
+                class="carousel slide"
+                data-bs-ride="carousel"
+              >
+                <div class="carousel-inner" id="carousel-inner-eaton"></div>
+                <!-- Contrôles de navigation du carrousel -->
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselEaton"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Précédent</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselEaton"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Suivant</span>
+                </button>
+              </div>
+
+              <!-- Corps de la carte avec titre et texte -->
+              <div class="card-body">
+                <h5 class="card-title">Les créations de Tristan Eaton</h5>
+                <p class="card-text">
+                  <small class="text-muted"
+                    >11 janvier 2017 • Les autres Street Artists</small
+                  >
+                </p>
+                <p class="card-text">
+                  Découvrez les œuvres uniques de Tristan Eaton dans le street
+                  art...
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Article 5 : Mural Festival 2016 -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <!-- Carrousel Bootstrap vide avec un ID unique -->
+              <div
+                id="carouselFestival"
+                class="carousel slide"
+                data-bs-ride="carousel"
+              >
+                <div class="carousel-inner" id="carousel-inner-festival"></div>
+                <!-- Contrôles de navigation du carrousel -->
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselFestival"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Précédent</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselFestival"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Suivant</span>
+                </button>
+              </div>
+
+              <!-- Corps de la carte avec titre et texte -->
+              <div class="card-body">
+                <h5 class="card-title">Bruxelles</h5>
+                <p class="card-text">
+                  <small class="text-muted">16 mars 2017 • Voyages</small>
+                </p>
+                <p class="card-text">
+                  Explorez la beauté de Bruxelles, une ville riche en culture...
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- À propos -->
+    <section id="apropos" class="py-5">
+      <div class="container">
+        <div class="row">
+          <div id="image_apropos" class="col-md-6 d-flex align-items-center">
+            <a href="#contact" class="btn btn-dark mx-auto"
+              >Rester en contact</a
+            >
+          </div>
+          <div class="col-md-6" style="background-color: #eeeeee">
+            <h3>À propos de Combo</h3>
+            <p style="font-size: 18px; line-height: 2.2; color: #666666">
+              COMBO, ou COMBO Culture Kidnapper, est un artiste originaire de
+              Paris. Son travail se concentre essentiellement autour du
+              détournement...
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="py-5">
+      <div class="container">
+        <!-- Titre de la section -->
+        <h2 class="text-center mb-4">Contact</h2>
+
+        <!-- Adresse -->
+        <div class="text-center mb-4">
+          <p>
+            <strong>Combo Central Office</strong><br />
+            36 quai des orfèvres, 75001 Paris
+          </p>
+        </div>
+
+        <!-- Carte Google Maps -->
+        <div class="map-container mb-5">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.999877441481!2d2.338262515673656!3d48.855715979287085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06a3f383%3A0x73b81fc4c6a2c4d4!2s36%20Quai%20des%20Orf%C3%A8vres%2C%2075001%20Paris%2C%20France!5e0!3m2!1sen!2sfr!4v1675074768485!5m2!1sen!2sfr"
+            width="100%"
+            height="400"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+          >
+          </iframe>
+        </div>
+
+        <!-- Formulaire de contact -->
+        <div class="row justify-content-center">
+          <div class="col-md-10">
+            <form>
+              <div class="form-group mb-3">
+                <label for="name">Nom</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  placeholder="Votre nom"
+                  required
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Votre email"
+                  required
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="message">Message</label>
+                <textarea
+                  class="form-control"
+                  id="message"
+                  rows="5"
+                  placeholder="Votre message"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Envoyer</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="articles.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
