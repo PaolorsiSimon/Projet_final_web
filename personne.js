@@ -45,8 +45,26 @@ function loadCSV(callback) {
         <p><strong>Profession :</strong> ${personne.profession}</p>
         <p><strong>Description :</strong> ${personne.description}</p>
       `;
+      // Afficher les images de la personne
+      displayPersonneImages(personne.dossierImages);
     } else {
       document.getElementById('personne-info').innerHTML = '<p>Personne non trouvée.</p>';
+    }
+  }
+  
+  // Fonction pour afficher les images de la personne
+  function displayPersonneImages(dossierImages) {
+    const imagesContainer = document.getElementById('personne-images');
+    imagesContainer.innerHTML = ''; // Réinitialiser les images
+  
+    // Supposez que chaque personne ait 3 images maximum
+    for (let i = 1; i <= 3; i++) {
+      const img = document.createElement('img');
+      img.src = `images/artistes/${dossierImages}/${dossierImages}_${i}.jpg`;
+      img.alt = `${dossierImages}_${i}`;
+      img.style.maxWidth = '300px'; // Limite la taille des images pour les rendre responsives
+      img.style.margin = '10px';
+      imagesContainer.appendChild(img);
     }
   }
   
@@ -56,7 +74,7 @@ function loadCSV(callback) {
       // Si on est sur index.html, afficher la liste des personnes
       populatePersonnesList(personnes);
     } else if (document.getElementById('personne-info')) {
-      // Si on est sur personne.html, afficher les infos de la personne
+      // Si on est sur personne.html, afficher les infos de la personne et les images
       displayPersonneInfo(personnes);
     }
   });
