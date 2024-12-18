@@ -1,6 +1,8 @@
 artiste;photo;nom;taille
-Ben Caillous;images/galerie/street-art-image-1.jpg;Les avions;81 x 130 cm
-Ben Caillous;images/galerie/street-art-image-2.jpg;Autant;100 x 81 cm
-Ben Caillous;images/galerie/street-art-image-3.jpg;Les etoiles;89 x 116 cm
-autre artiste;images/galerie/street-art-image-4.jpg;Les avions;81 x 130 cm
-autre artiste;images/galerie/street-art-image-5.jpg;Autant;100 x 81 cm
+Divers;images/galerie/street-art-image-1.jpg;;;
+Divers;images/galerie/street-art-image-2.jpg;;;
+Divers;images/galerie/street-art-image-3.jpg;;;
+Divers;images/galerie/street-art-image-4.jpg;;;
+Divers;images/galerie/street-art-image-5.jpg;;;
+Bruno;images/galerie/bruno_1.jpg;;;
+Clement;images/galerie/clement_1.jpg;;;
