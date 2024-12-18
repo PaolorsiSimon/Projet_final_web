@@ -25,9 +25,12 @@ function loadCSV(callback) {
       const listItem = document.createElement('li');
       const link = document.createElement('a');
       link.href = `personne.html?nom=${encodeURIComponent(personne.nom)}`;
-      link.textContent = `${personne.nom} - Voir +`;
-      listItem.appendChild(link);
-      listContainer.appendChild(listItem);
+      if(personne.nom != ''){
+        link.textContent = `${personne.nom} - Voir +`;
+        listItem.appendChild(link);
+        listContainer.appendChild(listItem);
+      }
+
     });
   }
   
@@ -37,7 +40,7 @@ function loadCSV(callback) {
     const nom = params.get('nom');
     const personne = personnes.find(p => p.nom === nom);
   
-    if (personne) {
+    if (personne != null) {
       const infoContainer = document.getElementById('personne-info');
       infoContainer.innerHTML = `
         <h2>${personne.nom}</h2>
