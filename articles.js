@@ -4,7 +4,7 @@ async function loadArticles() {
     displayLoading();
 
     // Récupérer le fichier CSV
-    const response = await fetch('https://raw.githubusercontent.com/PaolorsiSimon/Projet_final_web/aeb12ea07641451fef9cc0fcfb1f18615d9e87c5/articles.csv');
+    const response = await fetch('https://raw.githubusercontent.com/PaolorsiSimon/Projet_final_web/refs/heads/main/articles.csv');
     const csvData = await response.text();
 
     if (!csvData.trim()) {
