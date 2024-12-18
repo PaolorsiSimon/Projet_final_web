@@ -31,8 +31,8 @@ function parseCSV(csvData) {
   
   // Vérification de l'en-tête
   const header = lines[0].trim().split(';');
-  if (!header.includes('artiste') || !header.includes('photo') || !header.includes('nom') || !header.includes('taille')) {
-    throw new Error('Le fichier CSV doit contenir "artiste", "photo", "nom", et "taille"');
+  if (!header.includes('artiste') || !header.includes('photo')) {
+    throw new Error('Le fichier CSV doit contenir "artiste", "photo"');
   }
 
   // Parser les lignes de données
@@ -40,15 +40,15 @@ function parseCSV(csvData) {
     const line = lines[i].trim();
     if (line === '') continue;
 
-    const [artiste, photo, nom, taille] = line.split(';').map(item => item.trim());
+    const [artiste, photo,] = line.split(';').map(item => item.trim());
 
     // Validation des données
-    if (!artiste || !photo || !nom || !taille) {
+    if (!artiste || !photo) {
       console.warn(`Ligne ${i + 1} ignorée car incomplète`);
       continue;
     }
 
-    articles.push({ artiste, photo, nom, taille });
+    articles.push({ artiste, photo,});
   }
 
   return articles;
@@ -91,9 +91,8 @@ function displayArticles(articles) {
       const articleElement = document.createElement('div');
       articleElement.classList.add('article');
       articleElement.innerHTML = `
-        <img src="${article.photo}" alt="${article.nom}" onerror="this.onerror=null; this.src='placeholder.jpg'; this.classList.add('error-image')">
-        <h3>${article.nom}</h3>
-        <p>Taille : ${article.taille}</p>
+        <img src="${article.photo}" onerror="this.onerror=null; this.src='placeholder.jpg'; this.classList.add('error-image')">
+
       `;
       artistSection.appendChild(articleElement);
     });
