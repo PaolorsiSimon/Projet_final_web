@@ -40,7 +40,7 @@ function loadCSV(callback) {
     const nom = params.get('nom');
     const personne = personnes.find(p => p.nom === nom);
   
-    if (personne) {
+    if (personne != null) {
       const infoContainer = document.getElementById('personne-info');
       infoContainer.innerHTML = `
         <h2>${personne.nom}</h2>
@@ -49,22 +49,22 @@ function loadCSV(callback) {
         <p><strong>Description :</strong> ${personne.description}</p>
       `;
       // Afficher les images de la personne
-      displayPersonneImages(personne.dossier);
+      displayPersonneImages(personne.dossierImages);
     } else {
       document.getElementById('personne-info').innerHTML = '<p>Personne non trouvée.</p>';
     }
   }
   
   // Fonction pour afficher les images de la personne
-  function displayPersonneImages(dossier) {
+  function displayPersonneImages(dossierImages) {
     const imagesContainer = document.getElementById('personne-images');
     imagesContainer.innerHTML = ''; // Réinitialiser les images
   
     // Supposez que chaque personne ait 3 images maximum
     for (let i = 1; i <= 3; i++) {
       const img = document.createElement('img');
-      img.src = `images/artistes/${dossier}/${dossier}_${i}.jpg`;
-      img.alt = `${dossier}_${i}`;
+      img.src = `images/artistes/${dossierImages}/${dossierImages}_${i}.jpg`;
+      img.alt = `${dossierImages}_${i}`;
       img.style.maxWidth = '300px'; // Limite la taille des images pour les rendre responsives
       img.style.margin = '10px';
       imagesContainer.appendChild(img);
