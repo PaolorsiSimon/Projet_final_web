@@ -40,7 +40,7 @@ function loadCSV(callback) {
     const nom = params.get('nom');
     const personne = personnes.find(p => p.nom === nom);
   
-    if (personne != null) {
+    if (personne) {
       const infoContainer = document.getElementById('personne-info');
       infoContainer.innerHTML = `
         <h2>${personne.nom}</h2>
