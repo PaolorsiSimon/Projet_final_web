@@ -34,24 +34,93 @@ function loadCSV(callback) {
   }
   
   // Fonction pour afficher les informations d'une personne sur personne.html
-  function displayPersonneInfo(personnes) {
-    const params = new URLSearchParams(window.location.search);
-    const nom = params.get('nom');
-    const personne = personnes.filter(p => p.nom.toLowerCase() === nom.toLowerCase()); // Filtrer toutes les personnes correspondant à ce nom
-  
-    if (personne.length > 0) {
-      const infoContainer = document.getElementById('personne-info');
-      infoContainer.innerHTML = `
-        <h2>${personne[0].nom}</h2>
-        <p><strong>Titre :</strong> ${personne[0].titre}</p>
-        <p><strong>Taille :</strong> ${personne[0].taille}</p>
-      `;
-      // Afficher les images de la personne avec leurs informations
-      displayPersonneImages(personne);
-    } else {
-      document.getElementById('personne-info').innerHTML = '<p>Personne non trouvée.</p>';
-    }
+// Fonction pour afficher les informations d'une personne sur personne.html
+function displayPersonneInfo(personnes) {
+  const params = new URLSearchParams(window.location.search);
+  const nom = params.get('nom');
+  const personne = personnes.filter(p => p.nom.toLowerCase() === nom.toLowerCase()); // Filtrer toutes les personnes correspondant à ce nom
+
+  if (personne.length > 0) {
+    const infoContainer = document.getElementById('personne-info');
+    infoContainer.innerHTML = `
+      <h2>${personne[0].nom}</h2>
+    `;
+
+    // Insérer des métadonnées globales pour l'artiste
+    const head = document.head;
+
+    // Créer et ajouter des balises meta pour l'artiste (nom)
+    const metaArtist = document.createElement('meta');
+    metaArtist.name = "artist";
+    metaArtist.content = personne[0].nom; // Nom de l'artiste
+    head.appendChild(metaArtist);
+
+    // Créer une liste d'images par artiste
+    const imagesParArtiste = groupImagesByArtist(personne);
+
+    // Ajouter des métadonnées spécifiques à chaque tableau d'images
+    imagesParArtiste.forEach((images, artistName) => {
+      const metaTableau = document.createElement('meta');
+      metaTableau.name = "image-group";
+      metaTableau.content = `Tableau de ${artistName}`;
+      head.appendChild(metaTableau);
+
+      // Afficher les images du tableau
+      displayPersonneImages(images);
+    });
+  } else {
+    document.getElementById('personne-info').innerHTML = '<p>Personne non trouvée.</p>';
   }
+}
+
+// Fonction pour regrouper les images par artiste
+function groupImagesByArtist(personne) {
+  const grouped = {};
+
+  personne.forEach(p => {
+    if (!grouped[p.nom]) {
+      grouped[p.nom] = [];
+    }
+    grouped[p.nom].push(p);
+  });
+
+  return grouped;
+}
+
+// Fonction pour afficher toutes les images d'un artiste avec leurs informations
+function displayPersonneImages(images) {
+  const imagesContainer = document.getElementById('personne-images');
+  imagesContainer.innerHTML = ''; // Réinitialiser les images
+
+  images.forEach(p => {
+    const imageItem = document.createElement('div');
+    imageItem.style.display = 'flex';  // Utilisation de flexbox pour afficher côte à côte
+
+    // Image
+    const img = document.createElement('img');
+    img.src = p.photo;  // Utiliser le chemin de l'image à partir du CSV
+    img.alt = `Image de ${p.nom}`;
+
+    // Informations associées à l'image
+    const info = document.createElement('div');
+    info.style.marginLeft = '15px';
+
+    const titre = document.createElement('p');
+    titre.innerHTML = `<strong>Titre :</strong> ${p.titre}`;
+
+    const taille = document.createElement('p');
+    taille.innerHTML = `<strong>Taille :</strong> ${p.taille}`;
+
+    // Ajouter l'image et les informations au conteneur
+    info.appendChild(titre);
+    info.appendChild(taille);
+
+    imageItem.appendChild(img);
+    imageItem.appendChild(info);
+    imagesContainer.appendChild(imageItem);
+  });
+}
+
   
   // Fonction pour afficher toutes les images de la personne avec leurs informations
   function displayPersonneImages(personne) {
@@ -67,8 +136,7 @@ function loadCSV(callback) {
       const img = document.createElement('img');
       img.src = p.photo;  // Utiliser le chemin de l'image à partir du CSV
       img.alt = `Image de ${p.nom}`;
-      img.style.maxWidth = '300px'; // Limiter la taille des images
-      img.style.margin = '10px';
+
   
       // Informations associées à l'image
       const info = document.createElement('div');

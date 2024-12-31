@@ -1,5 +1,5 @@
 nom;photo;titre;taille
-bruno;images/artistes/bruno_1.jpg;PROFIL;4567
-bruno;images/artistes/bruno_2.jpg;BALLON;852445
-clement;images/artistes/clement_1.jpg;test;test
-clement;images/artistes/clement_2.png;test;test
+bruno;images/artistes/bruno/bruno_1.jpg;PROFIL;15x25
+bruno;images/artistes/bruno/bruno_2.jpg;BALLON;15x25
+clement;images/artistes/clement/clement_1.jpg;test;15x25
+clement;images/artistes/clement/clement_2.png;test;15x25
