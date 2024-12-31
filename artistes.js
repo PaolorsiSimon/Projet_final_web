@@ -72,3 +72,30 @@ loadArtistesCSV(artistes => {
       displayArtisteInfo(artistes);
   }
 });
+
+  // Fonction pour remplir la liste des personnes sur index.html
+  function populatePersonnesList(artistes) {
+    const listContainer = document.getElementById('personnes-list');
+    artistes.forEach(artiste => {
+      const listItem = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = `personne.html?nom=${encodeURIComponent(artistes.nom)}`;
+      if(artiste.nom != ''){
+        link.textContent = `${artiste.nom} - Voir +`;
+        listItem.appendChild(link);
+        listContainer.appendChild(listItem);
+      }
+}
+
+)};
+
+  // Charger les données CSV et remplir la page en fonction de l'URL
+  loadCSV(artistes => {
+    if (document.getElementById('personnes-list')) {
+      // Si on est sur index.html, afficher la liste des personnes
+      populatePersonnesList(artistes);
+    } else if (document.getElementById('personne-info')) {
+      // Si on est sur personne.html, afficher les infos de la personne et les images
+      displayPersonneInfo(artistes);
+    }
+  });
