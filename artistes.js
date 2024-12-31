@@ -1,84 +1,74 @@
-// Fonction pour charger les données du CSV
-function loadCSV(callback) {
-    fetch('https://raw.githubusercontent.com/PaolorsiSimon/Projet_final_web/refs/heads/main/personnes.csv')
+// Fonction pour charger les données des artistes à partir du CSV
+function loadArtistesCSV(callback) {
+  fetch('https://raw.githubusercontent.com/PaolorsiSimon/Projet_final_web/refs/heads/main/artistes.csv')
       .then(response => response.text())
       .then(data => {
-        const rows = data.split('\n');
-        const headers = rows[0].split(',');
-        const personnes = rows.slice(1).map(row => {
-          const cells = row.split(',');
-          let personne = {};
-          headers.forEach((header, index) => {
-            personne[header] = cells[index];
+          const rows = data.split('\n');
+          const headers = rows[0].split(';');
+          const artistes = rows.slice(1).map(row => {
+              const cells = row.split(';');
+              let artiste = {};
+              headers.forEach((header, index) => {
+                  artiste[header] = cells[index];
+              });
+              return artiste;
           });
-          return personne;
-        });
-        callback(personnes);
+          callback(artistes);  // Passe les données à la fonction de callback
       })
       .catch(err => console.error('Erreur de chargement du CSV', err));
-  }
-  
-  // Fonction pour remplir la liste des personnes sur index.html
-  function populatePersonnesList(personnes) {
-    const listContainer = document.getElementById('personnes-list');
-    personnes.forEach(personne => {
-      const listItem = document.createElement('li');
-      const link = document.createElement('a');
-      link.href = `personne.html?nom=${encodeURIComponent(personne.nom)}`;
-      if(personne.nom != ''){
-        link.textContent = `${personne.nom} - Voir +`;
-        listItem.appendChild(link);
-        listContainer.appendChild(listItem);
-      }
+}
 
-    });
-  }
-  
-  // Fonction pour afficher les informations d'une personne sur personne.html
-  function displayPersonneInfo(personnes) {
-    const params = new URLSearchParams(window.location.search);
-    const nom = params.get('nom');
-    const personne = personnes.find(p => p.nom === nom);
-  
-    if (personne != null) {
+// Fonction pour afficher les informations détaillées de l'artiste sous le nom
+function displayArtisteInfo(artistes) {
+  const params = new URLSearchParams(window.location.search);
+  const nom = params.get('nom');
+  const artiste = artistes.filter(a => a.nom.toLowerCase() === nom.toLowerCase()); // Filtrer les artistes correspondants
+
+  if (artiste.length > 0) {
       const infoContainer = document.getElementById('personne-info');
+      const artisteInfo = artiste[0];
+      
+      // Afficher le nom de l'artiste
       infoContainer.innerHTML = `
-        <h2>${personne.nom}</h2>
-        <p><strong>Âge :</strong> ${personne.age}</p>
-        <p><strong>Profession :</strong> ${personne.profession}</p>
-        <p><strong>Description :</strong> ${personne.description}</p>
+          <h2>${artisteInfo.nom}</h2>
+          <p><strong>Age :</strong> ${artisteInfo.age} ans</p>
+          <p><strong>Profession :</strong> ${artisteInfo.profession}</p>
+          <p><strong>Description :</strong> ${artisteInfo.description}</p>
       `;
-      // Afficher les images de la personne
-      displayPersonneImages(personne.dossierImages);
-    } else {
-      document.getElementById('personne-info').innerHTML = '<p>Personne non trouvée.</p>';
-    }
+
+      // Ajouter des métadonnées dans le head pour l'artiste
+      const head = document.head;
+
+      // Créer et ajouter une balise meta pour l'artiste
+      const metaNom = document.createElement('meta');
+      metaNom.name = "artist-name";
+      metaNom.content = artisteInfo.nom; // Nom de l'artiste
+      head.appendChild(metaNom);
+
+      const metaAge = document.createElement('meta');
+      metaAge.name = "artist-age";
+      metaAge.content = artisteInfo.age; // Âge de l'artiste
+      head.appendChild(metaAge);
+
+      const metaProfession = document.createElement('meta');
+      metaProfession.name = "artist-profession";
+      metaProfession.content = artisteInfo.profession; // Profession de l'artiste
+      head.appendChild(metaProfession);
+
+      const metaDescription = document.createElement('meta');
+      metaDescription.name = "artist-description";
+      metaDescription.content = artisteInfo.description; // Description de l'artiste
+      head.appendChild(metaDescription);
+
+  } else {
+      document.getElementById('personne-info').innerHTML = '<p>Artiste non trouvé.</p>';
   }
-  
-  // Fonction pour afficher les images de la personne
-  function displayPersonneImages(dossierImages) {
-    const imagesContainer = document.getElementById('personne-images');
-    imagesContainer.innerHTML = ''; // Réinitialiser les images
-  
-    // Supposez que chaque personne ait 3 images maximum
-    for (let i = 1; i <= 3; i++) {
-      const img = document.createElement('img');
-      img.src = `images/artistes/${dossierImages}/${dossierImages}_${i}`;
-      img.alt = `${dossierImages}_${i}`;
-      img.style.maxWidth = '300px'; // Limite la taille des images pour les rendre responsives
-      img.style.margin = '10px';
-      imagesContainer.appendChild(img);
-    }
+}
+
+// Charger les données CSV et remplir la page en fonction de l'URL
+loadArtistesCSV(artistes => {
+  if (document.getElementById('personne-info')) {
+      // Si on est sur personne.html, afficher les informations de l'artiste
+      displayArtisteInfo(artistes);
   }
-  
-  // Charger les données CSV et remplir la page en fonction de l'URL
-  loadCSV(personnes => {
-    if (document.getElementById('personnes-list')) {
-      // Si on est sur index.html, afficher la liste des personnes
-      populatePersonnesList(personnes);
-    } else if (document.getElementById('personne-info')) {
-      // Si on est sur personne.html, afficher les infos de la personne et les images
-      displayPersonneInfo(personnes);
-    }
-  });
-  
+});
