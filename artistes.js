@@ -63,7 +63,7 @@ function loadCSV(callback) {
     // Supposez que chaque personne ait 3 images maximum
     for (let i = 1; i <= 3; i++) {
       const img = document.createElement('img');
-      img.src = `images/artistes/${dossierImages}/${dossierImages}_${i}.jpg`;
+      img.src = `images/artistes/${dossierImages}/${dossierImages}_${i}`;
       img.alt = `${dossierImages}_${i}`;
       img.style.maxWidth = '300px'; // Limite la taille des images pour les rendre responsives
       img.style.margin = '10px';
