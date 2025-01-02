@@ -25,11 +25,7 @@ function loadCSV(callback) {
     const personne = personnes.filter(p => p.nom.toLowerCase() === nom.toLowerCase()); // Filtrer toutes les personnes correspondant à ce nom
   
     if (personne.length > 0) {
-        const infoContainer = document.getElementById('personne-info');
-        infoContainer.innerHTML = `
-            <h2>${personne[0].nom}</h2>
-        `;
-        console.log(personne[0]);
+        
   
         // Insérer des métadonnées globales pour l'artiste
         const head = document.head;

@@ -24,7 +24,7 @@ function displayArtisteInfo(artistes) {
   const nom = params.get('nom');
   const artiste = artistes.filter(a => a.nom.toLowerCase() === nom.toLowerCase()); // Filtrer les artistes correspondants
 
-  if (artiste.length > 0) {
+  if (artiste.length != 0) {
       const infoContainer = document.getElementById('personne-info');
       const artisteInfo = artiste[0];
       
