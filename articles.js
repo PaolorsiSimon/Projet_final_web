@@ -1,122 +1,54 @@
-// Fonction principale pour charger et afficher les articles
-async function loadArticles() {
+// Fonction pour charger le fichier CSV
+async function loadCSV(url) {
   try {
-    displayLoading();
-
-    // Récupérer le fichier CSV
-    const response = await fetch('https://raw.githubusercontent.com/PaolorsiSimon/Projet_final_web/refs/heads/main/articles.csv');
-    const csvData = await response.text();
-
-    if (!csvData.trim()) {
-      throw new Error('Le fichier CSV est vide');
-    }
-
-    const articles = parseCSV(csvData);
-
-    if (articles.length === 0) {
-      throw new Error('Aucun article trouvé dans le fichier CSV');
-    }
-
-    displayArticles(articles);
+      const response = await fetch(url);
+      if (!response.ok) {
+          throw new Error(`Erreur lors du chargement du fichier CSV: ${response.statusText}`);
+      }
+      const data = await response.text();
+      return parseCSV(data);
   } catch (error) {
-    console.error('Détails de l\'erreur:', error);
-    displayError(`Erreur lors du chargement des articles: ${error.message}`);
+      console.error(error);
   }
 }
 
-// Fonction pour parser le CSV avec validation
-function parseCSV(csvData) {
-  const lines = csvData.split('\n');
-  const articles = [];
-  
-  // Vérification de l'en-tête
-  const header = lines[0].trim().split(';');
-  if (!header.includes('artiste') || !header.includes('photo')) {
-    throw new Error('Le fichier CSV doit contenir "artiste", "photo"');
-  }
-
-  // Parser les lignes de données
-  for (let i = 1; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (line === '') continue;
-
-    const [artiste, photo,] = line.split(';').map(item => item.trim());
-
-    // Validation des données
-    if (!artiste || !photo) {
-      console.warn(`Ligne ${i + 1} ignorée car incomplète`);
-      continue;
-    }
-
-    articles.push({ artiste, photo,});
-  }
-
-  return articles;
+// Fonction pour parser le contenu du CSV
+function parseCSV(data) {
+  const lines = data.split("\n");
+  // Ignore la première ligne (l'en-tête)
+  const rows = lines.slice(1).filter(line => line.trim() !== "");
+  return rows.map(row => row.trim());
 }
 
-// Fonction pour afficher un message de chargement
-function displayLoading() {
-  const container = document.getElementById('articles-container');
-  container.innerHTML = '<div class="loading">Chargement des articles...</div>';
-}
+// Fonction pour afficher les images dans le conteneur
+function displayImages(imageUrls) {
+  const container = document.getElementById("articles-container");
 
-// Fonction pour afficher les articles
-// Fonction pour afficher les articles
-function displayArticles(articles) {
-  const container = document.getElementById('articles-container');
-  container.innerHTML = ''; // Nettoyer le conteneur
-
-  // Organiser les articles par artiste
-  const artists = {};
-
-  articles.forEach(article => {
-    if (!artists[article.artiste]) {
-      artists[article.artiste] = [];
-    }
-    artists[article.artiste].push(article);
+  imageUrls.forEach(url => {
+      // Crée une nouvelle div pour chaque image
+      const div = document.createElement("div");
+      div.classList.add("col-md-3", "col-sm-6", "mb-4");
+      
+      // Crée l'élément image
+      const img = document.createElement("img");
+      img.src = url;
+      img.alt = "Image de street art";
+      img.style.width = "100%"; // Ajuste la taille des images pour qu'elles occupent toute la largeur de la div
+      img.style.margin = "10px";
+      
+      // Ajoute l'image dans la div
+      div.appendChild(img);
+      
+      // Ajoute la div au conteneur
+      container.appendChild(div);
   });
+}
 
-  // Créer les sections d'artistes
-  for (let artist in artists) {
-    const artistSection = document.createElement('section');
-
-
-    artistSection.classList.add('artist-section');
-
-    const artistTitle = document.createElement('h2');
-    artistTitle.innerText = artist;
-    container.appendChild(artistTitle);
-
-    artists[artist].forEach(article => {
-      const articleElement = document.createElement('div');
-      articleElement.classList.add('article');
-      articleElement.innerHTML = `
-        <img src="${article.photo}" onerror="this.onerror=null; this.src='placeholder.jpg'; this.classList.add('error-image')">
-
-      `;
-      artistSection.appendChild(articleElement);
-    });
-
-    container.appendChild(artistSection);
+// Charger et afficher les images
+(async function () {
+  const csvUrl = "https://raw.githubusercontent.com/PaolorsiSimon/Projet_final_web/refs/heads/main/articles.csv";
+  const imageUrls = await loadCSV(csvUrl);
+  if (imageUrls) {
+      displayImages(imageUrls);
   }
-}
-
-
-// Fonction pour afficher les erreurs
-function displayError(message) {
-  const container = document.getElementById('articles-container');
-  container.innerHTML = `
-    <div class="error-message">
-      ${message}
-      <button onclick="retryLoading()" class="retry-button">Réessayer</button>
-    </div>
-  `;
-}
-
-// Fonction pour réessayer le chargement
-function retryLoading() {
-  loadArticles();
-}
-
-// Chargement automatique au démarrage de la page
-document.addEventListener('DOMContentLoaded', loadArticles);
+})();

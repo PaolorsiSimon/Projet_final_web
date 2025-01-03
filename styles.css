@@ -6,6 +6,20 @@
     margin: 0;
     padding: 20px;
 }
+#articles-container img {
+    margin: 5px;
+    transition: transform 0.2s ease-in-out;
+    margin: 40px;
+    width: 50%;
+    height: auto;
+    
+}
+
+#articles-container img:hover {
+    transform: scale(1.1);
+}
+
+
 .artist-section {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Colonnes flexibles */
