@@ -139,7 +139,8 @@ function loadCSV(callback) {
 
 
 
-  function displayArticles(personnes) {
+// Fonction pour afficher les articles
+function displayArticles(personnes) {
     const container = document.getElementById('articles-container');
     container.innerHTML = ''; // Nettoyer le conteneur
 
@@ -170,7 +171,9 @@ function loadCSV(callback) {
             img.src = personne.photo;
             img.alt = `Image de ${personne.nom}`;
             img.onerror = () => {
+                console.warn(`Image introuvable : ${personne.photo}`);
                 img.src = 'placeholder.jpg'; // Image de remplacement
+                img.alt = `Image non disponible pour ${personne.nom}`;
                 img.classList.add('error-image');
             };
 
@@ -190,8 +193,11 @@ function loadCSV(callback) {
         container.appendChild(artistSection);
     }
 }
+
+// Charger les données CSV et afficher les articles
 loadCSV(personnes => {
     if (document.getElementById('articles-container')) {
         displayArticles(personnes);
     }
 });
+
