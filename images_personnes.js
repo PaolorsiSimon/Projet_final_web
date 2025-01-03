@@ -136,3 +136,62 @@ function loadCSV(callback) {
     }
   });
   
+
+
+
+  function displayArticles(personnes) {
+    const container = document.getElementById('articles-container');
+    container.innerHTML = ''; // Nettoyer le conteneur
+
+    // Organiser les articles par artiste
+    const artistes = {};
+    personnes.forEach(personne => {
+        if (!artistes[personne.nom]) {
+            artistes[personne.nom] = [];
+        }
+        artistes[personne.nom].push(personne);
+    });
+
+    // Créer les sections pour chaque artiste
+    for (let artiste in artistes) {
+        const artistSection = document.createElement('section');
+        artistSection.classList.add('artist-section');
+
+        const artistTitle = document.createElement('h2');
+        artistTitle.innerText = artiste;
+        artistSection.appendChild(artistTitle);
+
+        artistes[artiste].forEach(personne => {
+            const articleElement = document.createElement('div');
+            articleElement.classList.add('article');
+
+            // Image avec gestion d'erreur
+            const img = document.createElement('img');
+            img.src = personne.photo;
+            img.alt = `Image de ${personne.nom}`;
+            img.onerror = () => {
+                img.src = 'placeholder.jpg'; // Image de remplacement
+                img.classList.add('error-image');
+            };
+
+            // Ajouter les informations
+            const infoDiv = document.createElement('div');
+            infoDiv.classList.add('info');
+            infoDiv.innerHTML = `
+                <p><strong>Titre :</strong> ${personne.titre}</p>
+                <p><strong>Taille :</strong> ${personne.taille}</p>
+            `;
+
+            articleElement.appendChild(img);
+            articleElement.appendChild(infoDiv);
+            artistSection.appendChild(articleElement);
+        });
+
+        container.appendChild(artistSection);
+    }
+}
+loadCSV(personnes => {
+    if (document.getElementById('articles-container')) {
+        displayArticles(personnes);
+    }
+});
