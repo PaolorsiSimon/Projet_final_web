@@ -162,6 +162,7 @@ function displayArticles(personnes) {
         artistTitle.innerText = artiste;
         artistSection.appendChild(artistTitle);
 
+
         artistes[artiste].forEach(personne => {
             const articleElement = document.createElement('div');
             articleElement.classList.add('article');
@@ -172,7 +173,7 @@ function displayArticles(personnes) {
             img.alt = `Image de ${personne.nom}`;
             img.onerror = () => {
                 console.warn(`Image introuvable : ${personne.photo}`);
-                img.src = 'placeholder.jpg'; // Image de remplacement
+                img.src = 'placeholder.png'; // Image de remplacement
                 img.alt = `Image non disponible pour ${personne.nom}`;
                 img.classList.add('error-image');
             };

@@ -98,6 +98,3 @@ loadArtistesCSV(artistes => {
     displayArtisteInfo(artistes);
   }
 });
-
-
-
