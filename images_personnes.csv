@@ -1,8 +1,15 @@
 nom;photo;titre;taille 
-Ben Caillou;images/artistes/Ben/Ben_1.jpg;PROFIL;15 x 25
-Ben Caillou;images/artistes/Ben/Ben_2.jpg;BALLON;15 x 25
-Ben Caillou;images/artistes/Ben/clement_1.jpg;test;15 x 25
-Ben Caillou;images/artistes/Ben/clement_2.png;test;15 x 25
+Ben Caillous;images/artistes/Ben/Ben_1.jpg;PROFIL;15 x 25
+Ben Caillous;images/artistes/Ben/Ben_2.jpg;BALLON;15 x 25
+Ben Caillous;images/artistes/Ben/clement_1.jpg;test;15 x 25
+Ben Caillous;images/artistes/Ben/clement_2.png;test;15 x 25
 Vincent Loisy;images/artistes/Vincent/Yanko.jpg;Yanko - Cuba; 66 x 49 
 Vincent Loisy;images/artistes/Vincent/Carlu.jpg;Carlu Andria - Corse; 75 x 59
 Vincent Loisy;images/artistes/Vincent/Jermaine.jpg;Jermaine - Guadeloupe; 97 x 53
+Zach Oreo;images/artistes/zach/delit_de_fuite.jpg;Délit de fuite;64 x 56
+Zach Oreo;images/artistes/zach/Stop_and_paint.jpg;Stop and paint;50 x 50
+Zach Oreo;images/artistes/zach/disobey_1.jpg;Disobey #1;81 x 54
+Zach Oreo;images/artistes/zach/Stop_and_paint.jpg;Disobey #2;81 x 54
+Zeso;images\artistes\zeso\4_my_people.jpg;4 my people;100 x 65
+Zeso;images\artistes\zeso\Back_in_the_dayz.jpg;Back in the dayz;55 x 46
+Zeso;images\artistes\zeso\Jumping_turnstile.jpg;Jumping Turnstile;100 x 65
