@@ -24,7 +24,6 @@ function loadCSV(callback) {
     const nom = params.get('nom');
     const personne = personnes.filter(p => p.nom.toLowerCase() === nom.toLowerCase()); // Filtrer toutes les personnes correspondant à ce nom
   
-    if (personne.length > 0) {
         
   
         // Insérer des métadonnées globales pour l'artiste
@@ -50,10 +49,8 @@ function loadCSV(callback) {
             displayPersonneImages(imagesParArtiste[artistName]);
         });
   
-    } else {
-        document.getElementById('personne-info').innerHTML = '<p>Personne non trouvée.</p>';
-    }
-  }
+    } 
+  
   
   // Fonction pour regrouper les images par artiste
   function groupImagesByArtist(personne) {
