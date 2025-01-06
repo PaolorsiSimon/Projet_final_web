@@ -24,7 +24,6 @@ function displayArtisteInfo(artistes) {
   const nom = params.get('nom');
   const artiste = artistes.filter(a => a.nom.toLowerCase() === nom.toLowerCase()); // Filtrer les artistes correspondants
 
-  if (artiste.length != 0) {
       const infoContainer = document.getElementById('personne-info');
       const artisteInfo = artiste[0];
       
@@ -60,10 +59,7 @@ function displayArtisteInfo(artistes) {
       metaDescription.content = artisteInfo.description; // Description de l'artiste
       head.appendChild(metaDescription);
 
-  } else {
-      document.getElementById('personne-info').innerHTML = '<p>Artiste non trouvé.</p>';
-  }
-}
+  } 
 
 // Charger les données CSV et remplir la page en fonction de l'URL
 loadArtistesCSV(artistes => {
