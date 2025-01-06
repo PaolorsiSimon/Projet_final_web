@@ -9,3 +9,4 @@ Des pages HTML qui on des balises avec des identifiants
 Des fichiers CSV déposées sur GitHub, donc avec un lien raw unique pour récupéré les données
 des fichiers JS pour récupérés les données des CSV, puis n'affiché que les données en fonctions de l'identifiants des div
 Les métadonnées sont aussi créer en fonction des informations récupérées dans le CSV.
+Pour consulter les métadonnées, appyez sur F12 puis aller dans "elements", les métadonnées n'étant pas écritent dans le fichier sources, vous ne pourrez pas les voir dans "sources".
